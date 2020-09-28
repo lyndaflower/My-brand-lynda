@@ -26,18 +26,14 @@ export const allArticles = (req, res) => {
   }
 
 export const oneArticle= async (req, res) => {
-    const data = await Article.findOne({ _id: req.params.id });
-    let allComments = [];
-    
-    const userComments = await Promise.all(data.comments.map(async (comment)=>{
-      const findComment = await Comment.findOne({ _id: comment});
-      allComments.push(findComment);
-      return allComments;
-    })) 
-    console.log('userComments', userComments, 'data', data);
-    const selectedData = (({_id, title, description, body, imageUrl, createdAt }) => ({ _id, title, description, body, imageUrl, createdAt }))(data);
-    return res.status(200).json({ message: "success", data: {...selectedData, comments: userComments} });
-  }
+    const data =await Article.findOne({ _id: req.params.id }).populate('comments')
+
+    console.log('data', data);
+  res.json(data);
+}
+  //   const selectedData = (({_id, title, description, body, imageUrl, createdAt }) => ({ _id, title, description, body, imageUrl, createdAt }))(data);
+  //   return res.status(200).json({ message: "success", data: {...selectedData} });
+  // }
 
   export const updateArticle = async (req, res) => {
     const title = req.body.title;
@@ -57,8 +53,15 @@ export const oneArticle= async (req, res) => {
   }
 
   export const deleteArticle = async (req, res) => {
-    await Article.deleteOne({ _id: req.params.id });
-    return res.status(200).send({ message: "article delete successfully!!" });
+    try{
+      const articleDelete= await Article.deleteOne({_id:req.params.id})
+      res.json(articleDelete);
+    }
+    catch{
+      res.json("error")
+    }
+  
+    // return res.status(400).send({ message: "article delete successfully!!" });
   }
 
   export const comments = async (req, res) => {

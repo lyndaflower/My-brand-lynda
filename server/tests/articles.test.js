@@ -46,16 +46,20 @@ describe("articles test", () => {
     done()
   })
 })
-  // it('should get onearticle', (done) => {
-  //       chai
-  //       .request(app)
-  //       .get("/article/:id")
-  //       .end((err, res) => {
-  //         res.should.have.status(200);
-  //         done(); 
-  //     }).catch((err) => {
-  //       console.log(err);
-  // })
+  it('should get onearticle', (done) => {
+        chai
+        .request(app)
+        .get('/api/article')
+        .end((err, res) => {
+          chai.request(app).get('/article/' + res.body[0]._id)
+          .end((err,res)=>{
+            res.should.have.status(200);
+            done()
+          })
+      }).catch((err) => {
+        console.log(err);
+  })
+})
   // it("should update an article", (done) => {
   //   const id = 3;
   //   chai
