@@ -75,7 +75,7 @@ export const comments = async (req, res) => {
   const { name, comment } = req.body;
   const { id } = req.params;
   return Comment.create({ name, comment }).then((docComment) => {
-    console.log("\n>> Created Comment:\n", docComment);
+    // console.log("\n>> Created Comment:\n", docComment);
 
     return Article.findByIdAndUpdate(
       id,
