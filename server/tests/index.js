@@ -1,6 +1,8 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
+import {admin} from '../controller/user';
+
 
 chai.use(chaiHttp);
 chai.should();

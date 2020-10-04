@@ -6,10 +6,8 @@ import {allArticles} from '../controller/article.controller';
 import {deleteArticle} from '../controller/article.controller';
 import {updateArticle} from '../controller/article.controller';
 import {comments} from '../controller/article.controller';
-import {articleQueries } from '../controller/queries.article.controller';
+import {allQueries, articleQueries } from '../controller/queries.article.controller';
 import {retrieveQuery} from '../controller/queries.article.controller';
-import {updateQueries} from '../controller/queries.article.controller';
-import {deleteQueries} from '../controller/queries.article.controller';
 import {checkToken} from '../middleware/auth.middleware';
 import {userValidate} from '../middleware/articles.middleware';
 
@@ -28,12 +26,11 @@ app.post("/api/article",checkToken,createArticle);
 app.get("/article/:id",oneArticle);
 app.get("/api/article", allArticles);
 app.post("/api/signin", userValidate);
-app.patch("/api/articles/:id", checkToken, updateArticle);
-app.delete("/api/articles/:id", checkToken,deleteArticle);
+app.patch("/api/articles/update/:id", checkToken, updateArticle);
+app.delete("/api/articles/delete/:id", checkToken,deleteArticle);
 app.post("/api/articles/:id/comment", comments);
 app.post("/api/articles/queries",articleQueries);
 app.get("/api/articles/queries/:id",checkToken,retrieveQuery);
-app.patch("/api/articles/queries/:id",checkToken,updateQueries);
-app.delete("/api/articles/queries/:id",checkToken,deleteQueries);
+app.get("/api/queries",checkToken,allQueries);
 
 export default app;

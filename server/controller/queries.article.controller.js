@@ -10,7 +10,7 @@ const query = new Queries({
 query
 .save()
 .then((data) => {
-  res.send(data);
+  res.status(200).send(data);
 })
 .catch((err) => {
   res.status(500).send({
@@ -23,23 +23,6 @@ const query = await Queries.findOne({_id: req.params.id })
 return res.status(200).json({ message: "success", query});
 }
 
-export const updateQueries = async (req, res) => {
-    const name = req.body.name;
-    const email = req.body.email;
-    const subject = req.body.subject;
-    const message = req.body.message;
-  
-    const updateQuery = await Queries.findOneAndUpdate(
-      { _id: req.params.id },
-      { name, email, subject,message },
-      { new: true }
-    );
-    // console.log(updated);
-    return res
-      .status(200)
-      .send({ message: "updated successfully", data: updateQuery });
-  }
-  export const deleteQueries = async(req,res)=>{
-      await Queries.deleteOne({_id:req.params.id});
-    return res.status(200).send({ message: "query delete successfully!!" });
-  }
+export const allQueries=(req,res)=>{
+  return Queries.find().then((data)=>res.status(201).json({data}));
+}
