@@ -26,7 +26,7 @@ describe("articles test", () => {
       })
       .end((err, res) => {
         res.should.have.status(201);
-        console.log(res.body);
+        // console.log(res.body);
         id = res.body._id
         done();
       });
