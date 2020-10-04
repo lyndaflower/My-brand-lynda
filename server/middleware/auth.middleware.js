@@ -16,6 +16,7 @@ export const checkToken = (req, res, next) => {
         return res.status(403).json({ error: "user not found" });
       }
     } catch (err) {
+      console.log(err);
       return res.status(500).json({ error: err.message });
     }
     next();
