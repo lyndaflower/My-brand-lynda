@@ -13,10 +13,10 @@ export const checkToken = (req, res, next) => {
       const users = user.findOne({ email });
   
       if (!users) {
-        return res.status(404).json({ error: "user not found" });
+        return res.status(403).json({ error: "user not found" });
       }
     } catch (err) {
-      return res.status(404).json({ error: err.message });
+      return res.status(500).json({ error: err.message });
     }
     next();
   };
