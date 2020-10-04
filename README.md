@@ -1,1 +1,2 @@
 # My-brand-lynda
+[![Coverage Status](https://coveralls.io/repos/github/lyndaflower/My-brand-lyndaServer/badge.svg?branch=develop)](https://coveralls.io/github/lyndaflower/My-brand-lyndaServer?branch=develop)
