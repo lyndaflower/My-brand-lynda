@@ -11,10 +11,10 @@ let id;
 
 
 describe("articles test", () => {
-  beforeEach((done) => {
-    admin();
-    done();
-  });
+  // beforeEach((done) => {
+  //   admin();
+  //   done();
+  // });
   it("should create article", (done) => {
     chai
       .request(app)
