@@ -1,7 +1,6 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
 import app from "../app";
-import { admin } from '../controller/user';
 import {checkToken} from '../middleware/auth.middleware';
 
 
@@ -11,10 +10,6 @@ let id;
 
 
 describe("articles test", () => {
-  // beforeEach((done) => {
-  //   admin();
-  //   done();
-  // });
   it("should create article", (done) => {
     chai
       .request(app)
@@ -31,7 +26,7 @@ describe("articles test", () => {
       })
       .end((err, res) => {
         res.should.have.status(201);
-        // console.log(res.body.id);
+        console.log(res.body);
         id = res.body._id
         done();
       });
