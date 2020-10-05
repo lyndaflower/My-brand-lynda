@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "stable"
+cache:
+  directories:
+    - node_modules
+services:
+  - mongodb
+before_script:
+  - sleep 15
+  - mongo my_brand_lynda --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
+script: 
+  - npm test
+after_success: 
+  - npm run coverage
