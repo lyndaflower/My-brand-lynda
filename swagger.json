@@ -1,0 +1,365 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "personal-website",
+    "contact" : { }
+  },
+  "host" : "localhost:5000",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/api/article" : {
+      "get" : {
+        "summary" : "get all articles",
+        "tags" : [ "articles" ],
+        "operationId" : "getallarticles",
+        "deprecated" : false,
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "create article",
+        "tags" : [ "articles" ],
+        "operationId" : "createarticle",
+        "deprecated" : false,
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "token",
+          "in" : "header",
+          "required" : true,
+          "type" : "string",
+          "description" : ""
+        }, {
+          "name" : "Body",
+          "in" : "body",
+          "required" : true,
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/createarticlerequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        }
+      }
+    },
+    "/api/articles/delete/{id}" : {
+      "delete" : {
+        "summary" : "delete article",
+        "tags" : [ "articles" ],
+        "operationId" : "deletearticle",
+        "deprecated" : false,
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "token",
+          "in" : "header",
+          "required" : true,
+          "type" : "string",
+          "description" : ""
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        }
+      }
+    },
+    "/api/articles/update/{id}" : {
+      "patch" : {
+        "summary" : "update article",
+        "tags" : [ "articles" ],
+        "operationId" : "updatearticle",
+        "deprecated" : false,
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "token",
+          "in" : "header",
+          "required" : true,
+          "type" : "string",
+          "description" : ""
+        }, {
+          "name" : "Body",
+          "in" : "body",
+          "required" : true,
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/updatearticlerequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        }
+      }
+    },
+    "/article/{id}" : {
+      "get" : {
+        "summary" : "get article",
+        "tags" : [ "articles" ],
+        "operationId" : "getarticle",
+        "deprecated" : false,
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        }
+      }
+    },
+    "/api/articles/{id}/comment" : {
+      "post" : {
+        "summary" : "comments",
+        "tags" : [ "articles" ],
+        "operationId" : "comments",
+        "deprecated" : false,
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "token",
+          "in" : "header",
+          "required" : true,
+          "type" : "string",
+          "description" : ""
+        }, {
+          "name" : "Body",
+          "in" : "body",
+          "required" : true,
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/commentsrequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        }
+      }
+    },
+    "/api/signin" : {
+      "post" : {
+        "summary" : "user",
+        "tags" : [ "user" ],
+        "operationId" : "user",
+        "deprecated" : false,
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "Body",
+          "in" : "body",
+          "required" : true,
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/userrequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        }
+      }
+    },
+    "/api/articles/queries" : {
+      "post" : {
+        "summary" : "queries",
+        "tags" : [ "user" ],
+        "operationId" : "queries",
+        "deprecated" : false,
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "Body",
+          "in" : "body",
+          "required" : true,
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/queriesrequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        }
+      }
+    },
+    "/api/articles/queries/{id}" : {
+      "get" : {
+        "summary" : "get query/questions",
+        "tags" : [ "user" ],
+        "operationId" : "getquery/questions",
+        "deprecated" : false,
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "token",
+          "in" : "header",
+          "required" : true,
+          "type" : "string",
+          "description" : ""
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        }
+      }
+    },
+    "/api/queries" : {
+      "get" : {
+        "summary" : "all queries",
+        "tags" : [ "user" ],
+        "operationId" : "allqueries",
+        "deprecated" : false,
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "token",
+          "in" : "header",
+          "required" : true,
+          "type" : "string",
+          "description" : ""
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "headers" : { }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "updatearticlerequest" : {
+      "title" : "updatearticlerequest",
+      "example" : {
+        "title" : "its monday ",
+        "description" : "really",
+        "body" : "wowww today it's on friday",
+        "imageUrl" : "https://wallpaperaccess.com/full/271965.jpg"
+      },
+      "type" : "object",
+      "properties" : {
+        "title" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "body" : {
+          "type" : "string"
+        },
+        "imageUrl" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "title", "description", "body", "imageUrl" ]
+    },
+    "createarticlerequest" : {
+      "title" : "createarticlerequest",
+      "example" : {
+        "title" : "user",
+        "description" : " day",
+        "body" : "body",
+        "imageUrl" : "https://i.pinimg.com/236x/4e/60/d3/4e60d3e6f3689b8ca2fa3c5df80267a1.jpg"
+      },
+      "type" : "object",
+      "properties" : {
+        "title" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "body" : {
+          "type" : "string"
+        },
+        "imageUrl" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "title", "description", "body", "imageUrl" ]
+    },
+    "commentsrequest" : {
+      "title" : "commentsrequest",
+      "example" : {
+        "name" : "lynda",
+        "comment" : "awesome "
+      },
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "comment" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "name", "comment" ]
+    },
+    "userrequest" : {
+      "title" : "userrequest",
+      "example" : {
+        "email" : "umurerwalynda@gmail.com",
+        "password" : "1346790"
+      },
+      "type" : "object",
+      "properties" : {
+        "email" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "email", "password" ]
+    },
+    "queriesrequest" : {
+      "title" : "queriesrequest",
+      "example" : {
+        "name" : "lyn",
+        "email" : "umurerwa@gmail.com",
+        "subject" : "feedback on project",
+        "message" : "progress"
+      },
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "subject" : {
+          "type" : "string"
+        },
+        "message" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "name", "email", "subject", "message" ]
+    }
+  },
+  "tags" : [ {
+    "name" : "articles"
+  }, {
+    "name" : "user"
+  } ]
+}
